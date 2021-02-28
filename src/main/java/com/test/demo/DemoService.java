@@ -23,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
 public class DemoService {
 	private RestTemplate restTemplate;
 	@Autowired
-	DemoBO demoBO;
+	DemoBO demoBO;//comment
 	DemoService(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
