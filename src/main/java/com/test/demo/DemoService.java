@@ -1,5 +1,6 @@
 package com.test.demo;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
 
 import javax.security.auth.message.callback.TrustStoreCallback;
@@ -19,18 +20,21 @@ import org.springframework.http.client.HttpComponentsAsyncClientHttpRequestFacto
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+
 @Service
 public class DemoService {
 	private RestTemplate restTemplate;
 	@Autowired
-	DemoBO demoBO;//comment
+	DemoBO demoBO;
 	DemoService(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
 	
 	String uri = "https://192.168.0.109:5554/mgmt/config/XXXXX/MQSourceProtocolHandler";   
 	
-	public String getResponseForService() {
+	public String getResponseForService() throws JsonParseException, JsonMappingException, IOException {
 		
 		String[] envs= {"SIT","Test"};
 		for (int i = 0; i < envs.length; i++) {
